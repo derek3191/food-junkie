@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-import recipesData from '../data/recipes.json'
+import RecipeService from './services/recipe';
+
+//import recipesData from '../data/recipes.json'
 
 export default class RecipeList extends Component {
     constructor(props) {
@@ -15,13 +17,11 @@ export default class RecipeList extends Component {
     }
 
     getRecipes(){
-        //this.setState({recipes: [] });
-        return recipesData['recipes'];
-
+        return RecipeService.prototype.getRecipes();
     }
 
     filterRecipes(filter){
-        return recipesData['recipes'].filter(recipe => recipe.name.includes(filter));
+        return RecipeService.prototype.filterRecipes(filter);
     }
 
     render(){

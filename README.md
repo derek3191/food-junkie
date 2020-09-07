@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [x] filter list and verify list is filtered
 
 ### view recipe detail
-- [ ] select a recipe and verify all info is present
+- [x] select a recipe and verify all info is present
 - [ ] update recipe info
 - [ ] delete recipe
 

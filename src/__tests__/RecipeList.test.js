@@ -2,16 +2,17 @@ import React from 'react'
 import { fireEvent, cleanup } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
+//import RecipeService from '../services/recipe';
 import RecipeList from '../RecipeList';
 
 describe('<RecipeList />', () => {
     afterEach(cleanup);
 
-    
     describe('get recipes', () => {
 
         it('should return all recipes from dataset', () => {
-            const recipes = RecipeList.prototype.getRecipes();
+            let recipes = RecipeList.prototype.getRecipes();
+            //const recipes = RecipeList.prototype.getRecipes();
             expect(recipes.length).toBeGreaterThan(0);
         });
 
@@ -29,8 +30,6 @@ describe('<RecipeList />', () => {
                 expect(recipe.name).toContain(filter);
             });
         });
-
-    })
-    
+    });
 
 });
