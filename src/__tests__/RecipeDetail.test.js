@@ -10,7 +10,7 @@ describe('<RecipeDetail />', () => {
         it('should load an empty object if nothing found', () => {
             let recipeId = 0;
             let recipe = RecipeDetail.prototype.getRecipe(recipeId);
-            expect(recipe).toEqual({});
+            expect(recipe).toBeUndefined();
         });
 
         it('should return a recipe if given a valid recipeId', () => {
@@ -48,9 +48,37 @@ describe('<RecipeDetail />', () => {
         })
     });
 
-    // describe('delete recipe', () => {
+    describe('delete recipe', () => {
+        let originalRecipe = {
+            "id": 1,
+            "name": "test chicken recipe"
+        };
 
-    // });
+        // afterAll( async () => {
+        //     let deletedRecipe = {
+        //         "id":2,
+        //         "name":"test Delete recipe"
+        //     }
+
+        //     let result = await RecipeDetail.prototype.addRecipe(deletedRecipe);
+
+        // });
+
+        it('should return a false when the recipe to delete is not found', async () => {
+            let recipeId = 0;
+            let result = await RecipeDetail.prototype.deleteRecipe(recipeId);
+            expect(result).toBeFalsy();
+        });
+
+        it('should remove recipe from the file and return true', async () => {
+            let recipeId = 2;
+            let result = await RecipeDetail.prototype.deleteRecipe(recipeId);
+            expect(result).toBeTruthy();
+            
+            let recipeSearch = RecipeDetail.prototype.getRecipe(recipeId);
+            expect(recipeSearch).toBeUndefined();
+        });
+    });
 
     // describe('add recipe', () => {
 

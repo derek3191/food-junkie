@@ -1,1 +1,12 @@
-{"recipes":[{"id":1,"name":"test chicken recipe"}]}
+{
+    "recipes": [
+        {
+            "id":1,
+            "name":"test chicken recipe"
+        },
+        {
+            "id":2,
+            "name":"test Delete recipe"
+        }
+    ]
+}

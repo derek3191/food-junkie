@@ -31,4 +31,17 @@ export default class RecipeService {
            if (err) throw err;
         });
     }
+
+    deleteRecipeById(recipeId){
+        let recipes = recipesData['recipes'];
+        let newRecipes = [];
+
+        newRecipes.push(...recipes.filter(recipe => recipe.id !== recipeId));
+
+        recipesData['recipes'] = newRecipes;
+
+        fs.writeFile(`${__dirname}/../../data/recipes.json`, JSON.stringify(recipesData), (err) => {
+            if (err) throw err;
+         });
+    }
 }

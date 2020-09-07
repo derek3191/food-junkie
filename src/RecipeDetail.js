@@ -10,12 +10,24 @@ export default class RecipeDetail extends Component {
         }
     }
 
-    getRecipe(recipeId){
-        if (recipeId <= 0) return {};
+    getRecipe(recipeId){;
         return RecipeService.prototype.getRecipeById(recipeId);
     }
 
     async updateRecipe(updatedRecipe){
         await RecipeService.prototype.updateRecipe(updatedRecipe);
+    }
+
+    async deleteRecipe(recipeId){
+        if (RecipeService.prototype.getRecipeById(recipeId) !== undefined){
+            try {
+                await RecipeService.prototype.deleteRecipeById(recipeId);                
+            } catch (error) {
+                return false;
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }
