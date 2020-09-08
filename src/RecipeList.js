@@ -9,7 +9,7 @@ export default class RecipeList extends Component {
         super(props);
 
         this.state = {
-            recipes: []
+            recipes: this.getRecipes()
         }
 
         this.getRecipes = this.getRecipes.bind(this);
@@ -21,16 +21,21 @@ export default class RecipeList extends Component {
     }
 
     filterRecipes(filter){
-        return RecipeService.prototype.filterRecipes(filter);
+        // this.setState({ recipes: RecipeService.prototype.filterRecipes(filter) }, () => {
+        //     console.log(`state is ${this.state.recipes.length}`);
+        // });
+        this.setState({ recipes: RecipeService.prototype.filterRecipes(filter) } );
     }
 
     render(){
         return (
             <div>
-               <h1>Recipe List</h1>
+                <input type='text' id='searchBox' onChange={(e) => this.filterRecipes(e.target.value)}/>
+                <ul id="recipeList">
+                    {this.state.recipes.map(recipe => <li key={recipe.id}>{recipe.name}</li>)}
+                </ul>
             </div>
         )
     }
 }
 
-//export default class RecipeList {}

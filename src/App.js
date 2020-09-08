@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import NewMessageForm from './NewMessageForm';
-import MessageList from './MessageList';
+import React from 'react';
 
+import RecipeList from './RecipeList';
 const App = () => {
   //const [messages, setMessages] = useState([]);
   //const handleSend = newMessage => {
@@ -10,7 +9,9 @@ const App = () => {
   // <MessageList data={messages}/>  
   return (
     <div>
-      <NewMessageForm />
+      <h1>Food Junkie</h1>
+               
+      <RecipeList />
 
     </div>
   );

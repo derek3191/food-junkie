@@ -1,4 +1,4 @@
-import recipesData from '../../data/recipes.json';
+import recipesData from '../data/recipes.json';
 import fs from 'fs';
 
 export default class RecipeService {
@@ -11,7 +11,7 @@ export default class RecipeService {
     }
 
     filterRecipes(filter){
-        return recipesData['recipes'].filter(recipe => recipe.name.includes(filter));
+        return recipesData['recipes'].filter(recipe => recipe.name.toLowerCase().includes(filter.toLowerCase()));
     }
 
     async updateRecipe(updatedRecipe){
@@ -52,7 +52,7 @@ export default class RecipeService {
     }
 
     async writeToFile(data){
-        fs.writeFile(`${__dirname}/../../data/recipes.json`, JSON.stringify(data), (err) => {
+        fs.writeFile(`${__dirname}/../data/recipes.json`, JSON.stringify(data), (err) => {
             if (err) throw err;
         });
     }
