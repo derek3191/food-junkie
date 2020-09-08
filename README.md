@@ -15,7 +15,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### view recipe detail
 - [x] select a recipe and verify all info is present
 - [x] update recipe info
-- [ ] delete recipe
+- [x] delete recipe
+- [x] add recipe
 
 -------------------------------------
 ## Stretch Goals

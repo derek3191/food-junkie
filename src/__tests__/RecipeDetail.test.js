@@ -54,15 +54,15 @@ describe('<RecipeDetail />', () => {
             "name": "test chicken recipe"
         };
 
-        // afterAll( async () => {
-        //     let deletedRecipe = {
-        //         "id":2,
-        //         "name":"test Delete recipe"
-        //     }
+        afterAll( async () => {
+            let deletedRecipe = {
+                "id":2,
+                "name":"test Delete recipe"
+            }
 
-        //     let result = await RecipeDetail.prototype.addRecipe(deletedRecipe);
+            await RecipeDetail.prototype.addRecipe(deletedRecipe);
 
-        // });
+        });
 
         it('should return a false when the recipe to delete is not found', async () => {
             let recipeId = 0;
@@ -80,7 +80,25 @@ describe('<RecipeDetail />', () => {
         });
     });
 
-    // describe('add recipe', () => {
+    describe('add recipe', () => {
+        let newRecipe = {
+            id: -1,
+            name: "added recipe",
+            link: "https://test.com"
+        }
 
-    //});
+        afterAll( async () =>{
+            await RecipeDetail.prototype.deleteRecipe(newRecipe.id);
+        });
+        it('should add recipe to data file', async () => {
+            
+
+            let result = await RecipeDetail.prototype.addRecipe(newRecipe);
+            expect(result).toBeTruthy();
+            
+            let recipes = RecipeDetail.prototype.getRecipeByName(newRecipe.name);
+            expect(recipes.length).toBeGreaterThanOrEqual(1);
+
+        });
+    });
 });

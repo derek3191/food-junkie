@@ -12,7 +12,6 @@ describe('<RecipeList />', () => {
 
         it('should return all recipes from dataset', () => {
             let recipes = RecipeList.prototype.getRecipes();
-            //const recipes = RecipeList.prototype.getRecipes();
             expect(recipes.length).toBeGreaterThan(0);
         });
 

@@ -14,6 +14,10 @@ export default class RecipeDetail extends Component {
         return RecipeService.prototype.getRecipeById(recipeId);
     }
 
+    getRecipeByName(recipeName){
+        return RecipeService.prototype.filterRecipes(recipeName);
+    }
+
     async updateRecipe(updatedRecipe){
         await RecipeService.prototype.updateRecipe(updatedRecipe);
     }
@@ -29,5 +33,19 @@ export default class RecipeDetail extends Component {
         } else {
             return false;
         }
+    }
+
+    addRecipe(recipe){
+        if (!recipe.id){
+            recipe.id = -1;
+        }
+        try {
+            RecipeService.prototype.addRecipe(recipe);
+            return true;    
+        } catch (error) {
+            return false;
+        }
+        
+        
     }
 }

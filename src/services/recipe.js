@@ -14,7 +14,7 @@ export default class RecipeService {
         return recipesData['recipes'].filter(recipe => recipe.name.includes(filter));
     }
 
-    updateRecipe(updatedRecipe){
+    async updateRecipe(updatedRecipe){
         let recipes = recipesData['recipes'];
         let newRecipes = [];
 
@@ -27,12 +27,10 @@ export default class RecipeService {
         
         recipesData['recipes'] = newRecipes;
 
-        fs.writeFile(`${__dirname}/../../data/recipes.json`, JSON.stringify(recipesData), (err) => {
-           if (err) throw err;
-        });
+        await this.writeToFile(recipesData);
     }
 
-    deleteRecipeById(recipeId){
+    async deleteRecipeById(recipeId){
         let recipes = recipesData['recipes'];
         let newRecipes = [];
 
@@ -40,8 +38,22 @@ export default class RecipeService {
 
         recipesData['recipes'] = newRecipes;
 
-        fs.writeFile(`${__dirname}/../../data/recipes.json`, JSON.stringify(recipesData), (err) => {
+        await this.writeToFile(recipesData);
+    }
+
+    async addRecipe(recipe){
+        let recipes = recipesData['recipes'];
+        
+        recipes.push(recipe);
+
+        recipesData['recipes'] = recipes;
+
+        await this.writeToFile(recipesData);
+    }
+
+    async writeToFile(data){
+        fs.writeFile(`${__dirname}/../../data/recipes.json`, JSON.stringify(data), (err) => {
             if (err) throw err;
-         });
+        });
     }
 }
