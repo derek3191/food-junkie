@@ -32,7 +32,7 @@ export default class RecipeList extends Component {
             <div>
                 <input type='text' id='searchBox' onChange={(e) => this.filterRecipes(e.target.value)}/>
                 <ul id="recipeList">
-                    {this.state.recipes.map(recipe => <li key={recipe.id}>{recipe.name}</li>)}
+                    {this.state.recipes.map(recipe => <li key={recipe.id}><a href={'/recipe/' + recipe.id}>{recipe.name}</a></li>)}
                 </ul>
             </div>
         )

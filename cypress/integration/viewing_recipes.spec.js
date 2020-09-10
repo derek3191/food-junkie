@@ -23,4 +23,15 @@ describe('view recipes', () => {
             cy.get('#recipeList').children().should('have.length.lessThan', recipes.length);
         });
     });
+
+    it('takes user to recipe detail page when clicking the recipe name', () => {
+        const firstRecipe = cy.get('#recipeList').children('li').first();
+        firstRecipe.children('a');
+
+        firstRecipe.click();
+
+        cy.url().should('include','/recipe/');
+
+        cy.get('#recipeTitle').contains(firstRecipe.children('a').innerHTML);
+    });
 });
